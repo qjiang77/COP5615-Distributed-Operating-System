@@ -1,0 +1,28 @@
+--> Actor model:
+    [1]a conceptual model to deal with concurrent computation;
+    [2]it defines some general rules for how the system's components should behave and interact with each other;
+
+--> "Actor"
+    [1]is the primitive unit of computation;
+    [2]it receive a message and do some computation on it;
+    [3]the actors are completely isolated from each other and will never share momery;
+In actor model, everything is an actor and they need to have address so one actor can send a message to another.
+
+Although multiple actors can run at the same time, an actor will process a given message sequentially: it will just execute one at a time. To have all the messages being executed concurrently, need to create n actors and send one message to each.
+Message are sent asynchronously to an actor, that needs to store them somewhere while it is processing another message. The mail-box is the place where these message are stored.
+
+--> What actors do?
+When an actor receives a message, it can do one of these 3 things:
+    -create more actors;
+    -send message to other actors;
+    -designate what to do with the next message: since actor can maintain a private state, it basically means defining how this state will look like for the next message it receives. Or more clearly, it is how actors mutate state;
+    eg. Let’s imagine we have an actor that behaves like a calculator and that its initial state is simply the number 0. When this actor receives the add(1) message, instead of mutating its original state, it designates that for the next message it receives, the state will be 1.
+
+--> Fault tolerance
+Erlang: let it crash philosophy, just try to anticipate all the possible problems that could happen and find a way to handle them when there occur fault(like reset this unit of code to a stable state)--self heal;
+Every code runs inside a process and is completely isolated that is not going to influence any other process.
+
+
+
+    
+
